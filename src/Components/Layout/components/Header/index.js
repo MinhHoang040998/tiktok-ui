@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleQuestion,
     faCircleXmark,
-    faCloudUpload,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
@@ -25,6 +24,8 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/Components/AccountItem';
 import Menu from '~/Components/Popper/Menu';
+import { UploadIcon } from '~/Components/Icons';
+import Image from '~/Components/Image';
 
 
 const cx = classNames.bind(styles);
@@ -144,7 +145,7 @@ function Header() {
                     <>
                         <Tippy delay={[0, 200]} content="Upload video" placement='bottom'>
                             <button>
-                                <FontAwesomeIcon icon={faCloudUpload} />
+                                <UploadIcon />
                             </button>
                         </Tippy>
                     </>
@@ -156,11 +157,11 @@ function Header() {
                 )}
                      <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img src='https://topgaixinh.net/wp-content/uploads/2022/11/103-Copy.jpg' 
+                            <Image src='https://o.vdoc.vn/data/image/2022/08/25/avatar-cute-cho-co-nang-nghien-tra-sua.jpg' 
                             className={cx('user-avatar')} 
                             alt="Nguyen Van A" 
+                            fallback="https://toigingiuvedep.vn/wp-content/uploads/2021/06/anh-hoat-hinh-de-thuong-cute-meo.jpg"
                         />
-
                         ) : (
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />

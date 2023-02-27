@@ -10,7 +10,7 @@ function AccountItem() {
         <div className={cx('wrapper')}>
             <img
                 className={cx('avatar')}
-                src="https://www.invert.vn/media/uploads/uploads/2022/12/03191304-8-anh-gai-xinh-toc-dai.jpeg"
+                src="https://img4.thuthuatphanmem.vn/uploads/2020/05/07/anh-cute-dang-yeu_093403118.jpg"
                 alt="Hoaa"
             />
             <div className={cx('info')}>
