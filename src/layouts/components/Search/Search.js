@@ -16,15 +16,15 @@ const cx = classNames.bind(styles);
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
+    const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const debounced = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
@@ -32,14 +32,14 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true);
 
-            const result = await searchServices.search(debounced);
+            const result = await searchServices.search(debouncedValue);
 
             setSearchResult(result);
             setLoading(false);
         };
 
         fetchApi();
-    }, [debounced]);
+    }, [debouncedValue]);
 
     const handleClear = () => {
         setSearchValue('');
@@ -53,15 +53,15 @@ function Search() {
 
     const handleChange = (e) => {
         const searchValue = e.target.value;
-        if(!searchValue.startsWith(' ') ) {
+        if (!searchValue.startsWith(' ')) {
             setSearchValue(searchValue);
-        }   
-    }
-
+        }
+    };
 
     return (
-        // Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context.
-       <div>
+        // Using a wrapper <div> tag around the reference element solves
+        // this by creating a new parentNode context.
+        <div>
             <HeadlessTippy
                 interactive
                 visible={showResult && searchResult.length > 0}
@@ -92,13 +92,13 @@ function Search() {
                         </button>
                     )}
                     {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-    
+
                     <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                         <SearchIcon />
                     </button>
                 </div>
             </HeadlessTippy>
-       </div>
+        </div>
     );
 }
 
